@@ -351,7 +351,7 @@
 
     function showScreen(id) {
       ['start-screen', 'quiz-screen', 'result-screen', 'review-complete-screen'].forEach(s => {
-        document.getElementById(s).style.display = s === id ? '' : 'none';
+        document.getElementById(s).style.display = s === id ? 'block' : 'none';
       });
     }
 
