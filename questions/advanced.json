@@ -1,0 +1,122 @@
+[
+  {
+    "sentence": "Had I known about the meeting, I ___ attended.",
+    "answer": "would have",
+    "choices": ["would have", "would", "had", "should have"],
+    "explanation": "倒置による仮定法過去完了。Had I known = If I had known の倒置形。帰結節は would have + 過去分詞。"
+  },
+  {
+    "sentence": "The committee recommended that he ___ dismissed immediately.",
+    "answer": "be",
+    "choices": ["be", "is", "was", "were"],
+    "explanation": "recommend, suggest, insist などの後の that 節では仮定法現在（動詞の原形）を使う。"
+  },
+  {
+    "sentence": "No sooner ___ he arrived than the argument broke out.",
+    "answer": "had",
+    "choices": ["had", "did", "was", "has"],
+    "explanation": "No sooner ... than の倒置構文。No sooner had + 主語 + 過去分詞 + than ...（過去完了の倒置）。"
+  },
+  {
+    "sentence": "The phenomenon is ___ to the increase in greenhouse gases.",
+    "answer": "attributable",
+    "choices": ["attributable", "attributed", "attributing", "attribute"],
+    "explanation": "be attributable to は「〜に起因する」。attributed to は動詞の受動態（The phenomenon is attributed to ...）でも可だが、ここでは形容詞として使う文脈。"
+  },
+  {
+    "sentence": "The policy, ___ all its merits, failed to gain public support.",
+    "answer": "for",
+    "choices": ["for", "with", "despite", "beyond"],
+    "explanation": "for all its merits は「その長所にもかかわらず」という譲歩表現。despite its merits も同義だが、ここは for all が入る。"
+  },
+  {
+    "sentence": "She spoke in a ___ tone that left little room for negotiation.",
+    "answer": "peremptory",
+    "choices": ["peremptory", "perfunctory", "peripheral", "perpetual"],
+    "explanation": "peremptory は「有無を言わさぬ・横柄な」。perfunctory は「おざなりな」、peripheral は「周辺的な」、perpetual は「永続的な」。"
+  },
+  {
+    "sentence": "The findings lend ___ to the hypothesis that sleep deprivation impairs judgment.",
+    "answer": "credence",
+    "choices": ["credence", "credibility", "credit", "credentials"],
+    "explanation": "lend credence to は「〜に信憑性を与える」という慣用句。credibility や credit も似た意味だが、この慣用句では credence を使う。"
+  },
+  {
+    "sentence": "The new regulation ___ on the rights of small businesses.",
+    "answer": "encroaches",
+    "choices": ["encroaches", "imposes", "infringes", "impedes"],
+    "explanation": "encroach on は「〜を侵食する・侵害する」。infringe on も近いが、encroach はより「じわじわと侵食する」ニュアンス。"
+  },
+  {
+    "sentence": "His argument, though ___, ultimately failed to persuade the jury.",
+    "answer": "cogent",
+    "choices": ["cogent", "coherent", "cognizant", "complacent"],
+    "explanation": "cogent は「説得力のある・論理的に明快な」。coherent は「一貫性のある」、cognizant は「認識している」、complacent は「自己満足した」。"
+  },
+  {
+    "sentence": "The professor's lecture was so ___ that students struggled to follow.",
+    "answer": "abstruse",
+    "choices": ["abstruse", "abstract", "abrupt", "absurd"],
+    "explanation": "abstruse は「難解な・理解しにくい」（専門的すぎて）。abstract は「抽象的な」、abrupt は「突然の」、absurd は「ばかげた」。"
+  },
+  {
+    "sentence": "The treaty was rendered ___ when one party withdrew.",
+    "answer": "null and void",
+    "choices": ["null and void", "null", "void", "invalid and null"],
+    "explanation": "null and void は「無効の」を意味する法律用語の慣用句。単独では null または void を使うが、固定表現として null and void がセット。"
+  },
+  {
+    "sentence": "Scientists are at ___ to explain the sudden disappearance of the species.",
+    "answer": "a loss",
+    "choices": ["a loss", "odds", "variance", "loggerheads"],
+    "explanation": "be at a loss to do は「〜することができずに困惑している」。at odds は「対立して」、at variance は「食い違って」、at loggerheads は「激しく対立して」。"
+  },
+  {
+    "sentence": "The company's success was ___ on its ability to adapt quickly.",
+    "answer": "contingent",
+    "choices": ["contingent", "dependent", "reliant", "conditional"],
+    "explanation": "contingent on は「〜次第で・〜を条件として」。dependent on や reliant on も使えるが、このフォーマルな文脈では contingent on が最も適切。"
+  },
+  {
+    "sentence": "Far ___ solving the problem, the new policy made it worse.",
+    "answer": "from",
+    "choices": ["from", "beyond", "above", "outside"],
+    "explanation": "far from + -ing は「〜どころか」という慣用表現。far from solving = むしろ逆で。"
+  },
+  {
+    "sentence": "The evidence was ___ at best; no conclusions could be drawn.",
+    "answer": "inconclusive",
+    "choices": ["inconclusive", "inclusive", "exclusive", "conclusive"],
+    "explanation": "inconclusive は「決定的でない・結論を出せない」。conclusive の反対語。inclusive は「包括的」、exclusive は「排他的」。"
+  },
+  {
+    "sentence": "His resignation came as ___ surprise to everyone in the organization.",
+    "answer": "a bolt from the blue",
+    "choices": ["a bolt from the blue", "a storm in a teacup", "a blessing in disguise", "a shot in the dark"],
+    "explanation": "a bolt from the blue は「青天の霹靂・全くの不意打ち」。a storm in a teacup は「コップの中の嵐（大げさな騒ぎ）」、a blessing in disguise は「不幸中の幸い」、a shot in the dark は「当て推量」。"
+  },
+  {
+    "sentence": "The author's ___ use of metaphor enriches the narrative considerably.",
+    "answer": "judicious",
+    "choices": ["judicious", "judicial", "juridical", "judgemental"],
+    "explanation": "judicious は「思慮深い・賢明な」。judicial は「司法の」、juridical は「法的な」、judgemental は「批判的な」。"
+  },
+  {
+    "sentence": "The data ___ that economic growth is slowing.",
+    "answer": "corroborates",
+    "choices": ["corroborates", "collaborates", "correlates", "corroborated"],
+    "explanation": "corroborate は「〜を裏付ける・確証する」。collaborate は「協力する」、correlate は「相関する」。主語 data は集合名詞として単数扱いで corroborates。"
+  },
+  {
+    "sentence": "She was ___ in her refusal to compromise on ethical standards.",
+    "answer": "steadfast",
+    "choices": ["steadfast", "headstrong", "obstinate", "adamant"],
+    "explanation": "steadfast は「毅然とした・揺るぎない」（肯定的ニュアンス）。headstrong と obstinate は「頑固な」（否定的）、adamant は「断固として譲らない」（やや強い）。"
+  },
+  {
+    "sentence": "The proposal was met with ___ approval from the board.",
+    "answer": "unanimous",
+    "choices": ["unanimous", "uniform", "universal", "unified"],
+    "explanation": "unanimous は「全員一致の」（投票・決定など）。uniform は「均一の」、universal は「普遍的な」、unified は「統一された」。"
+  }
+]

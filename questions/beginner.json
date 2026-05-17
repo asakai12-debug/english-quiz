@@ -1,0 +1,122 @@
+[
+  {
+    "sentence": "She ___ a student at this school.",
+    "answer": "is",
+    "choices": ["is", "are", "am", "be"],
+    "explanation": "主語が She（三人称単数）なので be 動詞は is。"
+  },
+  {
+    "sentence": "I ___ to the park every Sunday.",
+    "answer": "go",
+    "choices": ["go", "goes", "went", "going"],
+    "explanation": "主語が I の現在形なので go（三人称単数なら goes）。"
+  },
+  {
+    "sentence": "They ___ dinner when I called them.",
+    "answer": "were having",
+    "choices": ["were having", "had", "have had", "are having"],
+    "explanation": "電話したとき「食事中だった」は過去進行形 were having。"
+  },
+  {
+    "sentence": "Can you pass ___ salt, please?",
+    "answer": "the",
+    "choices": ["the", "a", "an", "—"],
+    "explanation": "特定のもの（テーブルの上の塩）を指すので定冠詞 the。"
+  },
+  {
+    "sentence": "He ___ speak three languages.",
+    "answer": "can",
+    "choices": ["can", "must", "should", "will"],
+    "explanation": "「〜できる」は助動詞 can。"
+  },
+  {
+    "sentence": "We ___ go to bed early tonight.",
+    "answer": "should",
+    "choices": ["should", "can", "would", "might"],
+    "explanation": "「〜した方がいい」というアドバイスは should。"
+  },
+  {
+    "sentence": "There ___ a lot of people at the concert.",
+    "answer": "were",
+    "choices": ["were", "was", "are", "is"],
+    "explanation": "people は複数形なので be 動詞も複数形 were（過去）。"
+  },
+  {
+    "sentence": "I haven't seen her ___ last Monday.",
+    "answer": "since",
+    "choices": ["since", "for", "from", "ago"],
+    "explanation": "「〜以来ずっと」は起点を示す since。現在完了と一緒に使う。"
+  },
+  {
+    "sentence": "She is taller ___ her brother.",
+    "answer": "than",
+    "choices": ["than", "then", "as", "like"],
+    "explanation": "比較級（taller）の後は than を使う。"
+  },
+  {
+    "sentence": "This is ___ interesting book I have ever read.",
+    "answer": "the most",
+    "choices": ["the most", "most", "more", "the more"],
+    "explanation": "「今まで読んだ中で最も〜」は最上級 the most + 形容詞。"
+  },
+  {
+    "sentence": "She ___ her homework before watching TV.",
+    "answer": "finished",
+    "choices": ["finished", "finishes", "has finished", "was finishing"],
+    "explanation": "過去の出来事の順序を述べる単純な文なので過去形 finished。"
+  },
+  {
+    "sentence": "I ___ like coffee, but now I love it.",
+    "answer": "didn't use to",
+    "choices": ["didn't use to", "don't use to", "used to not", "wasn't used to"],
+    "explanation": "「以前は〜しなかった」は didn't use to + 動詞の原形。"
+  },
+  {
+    "sentence": "Look at those dark clouds. It ___ rain.",
+    "answer": "is going to",
+    "choices": ["is going to", "will", "would", "shall"],
+    "explanation": "現在の証拠（暗い雲）に基づく近未来の予測は be going to。"
+  },
+  {
+    "sentence": "Please ___ quiet in the library.",
+    "answer": "be",
+    "choices": ["be", "are", "being", "is"],
+    "explanation": "命令文では動詞の原形を使う。be 動詞も原形は be。"
+  },
+  {
+    "sentence": "This bag is ___ expensive for me to buy.",
+    "answer": "too",
+    "choices": ["too", "so", "very", "enough"],
+    "explanation": "「〜すぎて…できない」は too + 形容詞 + to 不定詞。"
+  },
+  {
+    "sentence": "He arrived ___ the airport two hours early.",
+    "answer": "at",
+    "choices": ["at", "in", "on", "to"],
+    "explanation": "「空港に到着する」は arrive at the airport（地点には at）。"
+  },
+  {
+    "sentence": "I enjoy ___ to music while studying.",
+    "answer": "listening",
+    "choices": ["listening", "to listen", "listen", "listened"],
+    "explanation": "enjoy の後は動名詞（-ing 形）。enjoy to do は誤り。"
+  },
+  {
+    "sentence": "She asked me ___ the door.",
+    "answer": "to close",
+    "choices": ["to close", "closing", "close", "closed"],
+    "explanation": "ask + 人 + to 不定詞 で「〜するよう頼む」。"
+  },
+  {
+    "sentence": "I have lived here ___ ten years.",
+    "answer": "for",
+    "choices": ["for", "since", "during", "while"],
+    "explanation": "「10年間（ずっと）」は期間を表す for。since は起点（年・日付など）に使う。"
+  },
+  {
+    "sentence": "It was ___ a good movie that we watched it twice.",
+    "answer": "such",
+    "choices": ["such", "so", "too", "very"],
+    "explanation": "such + a + 形容詞 + 名詞 + that で「とても〜なので…」。so の場合は so + 形容詞 + that。"
+  }
+]

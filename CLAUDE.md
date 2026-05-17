@@ -8,20 +8,36 @@ npx http-server . -p 8080 --cors -c-1
 
 ## Project Structure
 
-Single-page app with no build step.
+```
+english-quiz/
+  index.html        # ゲーム本体（HTML + CSS + JS 一体）
+  questions/
+    beginner.json     # 初級（20問）
+    intermediate.json # 中級（20問）
+    advanced.json     # 上級（20問）
+```
 
-- `index.html` — ゲーム本体（HTML + CSS + JS 一体）
-- `questions.json` — 問題データ
+## Architecture (index.html)
 
-## Architecture
+**画面遷移**: `start-screen` → `quiz-screen` → `result-screen` → （`review-complete-screen`）
 
-**State**: `questions[]`, `order[]`（シャッフル済みインデックス）, `current`（現在の問題番号）, `score`, `answered`
+**State**:
+- `allQuestions[]` — 選択した難易度の全問題
+- `queue[]` — シャッフル済みの出題インデックス列
+- `current` — queue の現在位置
+- `score` — 正解数
+- `wrongIndices[]` — 間違えた allQuestions のインデックス（復習モード用）
+- `isReviewMode` — 復習モード中かどうか
+- `currentLevel` — 現在の難易度 ('beginner' | 'intermediate' | 'advanced')
 
-**Flow**: `loadQuestions()` → `startQuiz()` → `showQuestion()` → `selectAnswer()` → 次へ or `showResult()`
+**Key functions**:
+- `startQuiz(level, reviewMode)` — 問題を fetch（初回のみ）し quiz を初期化
+- `showQuestion()` — queue[current] の問題を描画
+- `selectAnswer(choice, q)` — 正誤判定、wrongIndices への追記
+- `showResult()` — 結果画面表示、wrongIndices > 0 なら復習ボタンを表示
+- `showReviewComplete()` — 復習完了画面
 
-**問題のシャッフル**: 毎回 `shuffle()` でランダム順。選択肢も同様にシャッフル。
-
-## Questions Format (questions.json)
+## Questions Format
 
 ```json
 {
@@ -32,6 +48,7 @@ Single-page app with no build step.
 }
 ```
 
-- `___` が空欄になる位置
-- `choices` は必ず正解を含む4択
-- `answer` は `choices` 内の文字列と完全一致させる
+- `___` が空欄位置（1問に1箇所）
+- `choices` は必ず `answer` を含む4択
+- `answer` は `choices` 内の文字列と完全一致
+- 問題を追加・差し替えるには各 JSON ファイルを編集するだけでよい
