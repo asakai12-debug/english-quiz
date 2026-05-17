@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>英語穴埋めクイズ</title>
+  <title>穴埋めクイズ</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -26,8 +26,8 @@
       padding: 36px 32px;
     }
 
-    /* ===== START SCREEN ===== */
-    #start-screen { text-align: center; }
+    /* ===== 共通: 選択画面 ===== */
+    .select-screen { text-align: center; }
     .app-title {
       font-size: 1.8rem;
       font-weight: 800;
@@ -39,7 +39,7 @@
       font-size: 0.95rem;
       margin-bottom: 36px;
     }
-    .level-label {
+    .select-label {
       font-size: 0.85rem;
       font-weight: 600;
       color: #9ca3af;
@@ -47,12 +47,12 @@
       letter-spacing: 0.08em;
       margin-bottom: 14px;
     }
-    .level-buttons {
+    .select-buttons {
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
-    .level-btn {
+    .select-btn {
       display: flex;
       align-items: center;
       gap: 16px;
@@ -63,18 +63,44 @@
       cursor: pointer;
       transition: border-color 0.15s, background 0.15s, transform 0.1s;
       text-align: left;
+      width: 100%;
     }
-    .level-btn:hover { border-color: #a5b4fc; background: #eef2ff; transform: translateY(-2px); }
-    .level-btn .level-icon { font-size: 2rem; }
-    .level-btn .level-info { display: flex; flex-direction: column; }
-    .level-btn .level-name { font-size: 1.05rem; font-weight: 700; color: #1f2937; }
-    .level-btn .level-desc { font-size: 0.83rem; color: #6b7280; margin-top: 2px; }
-    .level-btn[data-level="beginner"]     { border-color: #86efac; }
-    .level-btn[data-level="beginner"]:hover  { background: #f0fdf4; border-color: #22c55e; }
-    .level-btn[data-level="intermediate"] { border-color: #93c5fd; }
-    .level-btn[data-level="intermediate"]:hover { background: #eff6ff; border-color: #3b82f6; }
-    .level-btn[data-level="advanced"]     { border-color: #f9a8d4; }
-    .level-btn[data-level="advanced"]:hover  { background: #fdf2f8; border-color: #ec4899; }
+    .select-btn:hover { border-color: #a5b4fc; background: #eef2ff; transform: translateY(-2px); }
+    .select-btn .btn-icon { font-size: 2rem; flex-shrink: 0; }
+    .select-btn .btn-info { display: flex; flex-direction: column; }
+    .select-btn .btn-name { font-size: 1.05rem; font-weight: 700; color: #1f2937; }
+    .select-btn .btn-desc { font-size: 0.83rem; color: #6b7280; margin-top: 2px; }
+
+    /* トピックボタン個別色 */
+    .select-btn[data-topic="english"]  { border-color: #93c5fd; }
+    .select-btn[data-topic="english"]:hover  { background: #eff6ff; border-color: #3b82f6; }
+    .select-btn[data-topic="dx"]       { border-color: #6ee7b7; }
+    .select-btn[data-topic="dx"]:hover       { background: #ecfdf5; border-color: #10b981; }
+    .select-btn[data-topic="fudosan"]  { border-color: #fca5a5; }
+    .select-btn[data-topic="fudosan"]:hover  { background: #fff1f2; border-color: #f87171; }
+
+    /* 難易度ボタン個別色 */
+    .select-btn[data-level="beginner"]     { border-color: #86efac; }
+    .select-btn[data-level="beginner"]:hover  { background: #f0fdf4; border-color: #22c55e; }
+    .select-btn[data-level="intermediate"] { border-color: #93c5fd; }
+    .select-btn[data-level="intermediate"]:hover { background: #eff6ff; border-color: #3b82f6; }
+    .select-btn[data-level="advanced"]     { border-color: #f9a8d4; }
+    .select-btn[data-level="advanced"]:hover  { background: #fdf2f8; border-color: #ec4899; }
+
+    /* 戻るリンク */
+    .back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      font-size: 0.88rem;
+      color: #6b7280;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .back-link:hover { color: #374151; }
 
     /* ===== QUIZ SCREEN ===== */
     .header {
@@ -94,8 +120,8 @@
       display: inline-block;
       margin-bottom: 4px;
     }
-    .quiz-mode-label.normal   { background: #eef2ff; color: #4f46e5; }
-    .quiz-mode-label.review   { background: #fff7ed; color: #ea580c; }
+    .quiz-mode-label.normal { background: #eef2ff; color: #4f46e5; }
+    .quiz-mode-label.review { background: #fff7ed; color: #ea580c; }
     .quiz-title { font-size: 1rem; color: #6b7280; font-weight: 600; }
 
     .score-badge {
@@ -121,8 +147,8 @@
     .question-count { font-size: 0.82rem; color: #9ca3af; margin-bottom: 10px; }
 
     .sentence {
-      font-size: 1.3rem;
-      line-height: 1.75;
+      font-size: 1.25rem;
+      line-height: 1.8;
       color: #1f2937;
       margin-bottom: 26px;
       font-weight: 500;
@@ -152,11 +178,12 @@
       border: 2px solid #e5e7eb;
       border-radius: 10px;
       background: #fff;
-      font-size: 1rem;
+      font-size: 0.98rem;
       cursor: pointer;
       transition: border-color 0.15s, background 0.15s, transform 0.1s;
       font-weight: 500;
       color: #374151;
+      line-height: 1.4;
     }
     .choice-btn:hover:not(:disabled) { border-color: #a5b4fc; background: #eef2ff; transform: translateY(-2px); }
     .choice-btn:disabled { cursor: default; transform: none; }
@@ -168,7 +195,7 @@
       border-radius: 10px;
       padding: 12px 16px;
       font-size: 0.92rem;
-      line-height: 1.55;
+      line-height: 1.6;
       margin-bottom: 18px;
       display: none;
     }
@@ -241,7 +268,7 @@
 
     @media (max-width: 480px) {
       .card { padding: 24px 16px; }
-      .sentence { font-size: 1.1rem; }
+      .sentence { font-size: 1.05rem; }
       .choices { grid-template-columns: 1fr; }
     }
   </style>
@@ -249,37 +276,68 @@
 <body>
   <div class="card">
 
-    <!-- 難易度選択 -->
-    <div id="start-screen">
-      <div class="app-title">英語穴埋めクイズ</div>
-      <div class="app-subtitle">難易度を選んでスタート</div>
-      <div class="level-label">難易度を選択</div>
-      <div class="level-buttons">
-        <button class="level-btn" data-level="beginner">
-          <span class="level-icon">🌱</span>
-          <span class="level-info">
-            <span class="level-name">初級</span>
-            <span class="level-desc">基本文法・日常表現（中学〜高校レベル）</span>
+    <!-- ① トピック選択 -->
+    <div id="topic-screen" class="select-screen">
+      <div class="app-title">穴埋めクイズ</div>
+      <div class="app-subtitle">カテゴリを選んでスタート</div>
+      <div class="select-label">カテゴリを選択</div>
+      <div class="select-buttons">
+        <button class="select-btn" data-topic="english">
+          <span class="btn-icon">📘</span>
+          <span class="btn-info">
+            <span class="btn-name">英語クイズ</span>
+            <span class="btn-desc">初級・中級・上級の3段階（文法・語彙）</span>
           </span>
         </button>
-        <button class="level-btn" data-level="intermediate">
-          <span class="level-icon">📘</span>
-          <span class="level-info">
-            <span class="level-name">中級</span>
-            <span class="level-desc">時制・語彙・慣用句（大学・TOEIC 600点台）</span>
+        <button class="select-btn" data-topic="dx">
+          <span class="btn-icon">💻</span>
+          <span class="btn-info">
+            <span class="btn-name">DX研修</span>
+            <span class="btn-desc">デジタルトランスフォーメーションの基礎知識</span>
           </span>
         </button>
-        <button class="level-btn" data-level="advanced">
-          <span class="level-icon">🔥</span>
-          <span class="level-info">
-            <span class="level-name">上級</span>
-            <span class="level-desc">高度な文法・難語彙（TOEIC 800点以上・英検準1級）</span>
+        <button class="select-btn" data-topic="fudosan">
+          <span class="btn-icon">🏢</span>
+          <span class="btn-info">
+            <span class="btn-name">不動産鑑定士</span>
+            <span class="btn-desc">不動産鑑定評価の基礎・手法・法規</span>
           </span>
         </button>
       </div>
     </div>
 
-    <!-- クイズ画面 -->
+    <!-- ② 難易度選択（英語のみ） -->
+    <div id="level-screen" class="select-screen" style="display:none;">
+      <button class="back-link" id="level-back-btn">← カテゴリ選択に戻る</button>
+      <div class="app-title">英語クイズ</div>
+      <div class="app-subtitle">難易度を選んでスタート</div>
+      <div class="select-label">難易度を選択</div>
+      <div class="select-buttons">
+        <button class="select-btn" data-level="beginner">
+          <span class="btn-icon">🌱</span>
+          <span class="btn-info">
+            <span class="btn-name">初級</span>
+            <span class="btn-desc">基本文法・日常表現（中学〜高校レベル）</span>
+          </span>
+        </button>
+        <button class="select-btn" data-level="intermediate">
+          <span class="btn-icon">📖</span>
+          <span class="btn-info">
+            <span class="btn-name">中級</span>
+            <span class="btn-desc">時制・語彙・慣用句（TOEIC 600点台）</span>
+          </span>
+        </button>
+        <button class="select-btn" data-level="advanced">
+          <span class="btn-icon">🔥</span>
+          <span class="btn-info">
+            <span class="btn-name">上級</span>
+            <span class="btn-desc">高度な文法・難語彙（英検準1級・TOEIC 800点以上）</span>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ③ クイズ画面 -->
     <div id="quiz-screen" style="display:none;">
       <div class="header">
         <div class="header-left">
@@ -298,7 +356,7 @@
       <button class="next-btn normal" id="next-btn">次の問題へ →</button>
     </div>
 
-    <!-- 結果画面 -->
+    <!-- ④ 結果画面 -->
     <div id="result-screen">
       <div class="result-emoji" id="result-emoji"></div>
       <div class="result-title" id="result-title"></div>
@@ -308,12 +366,12 @@
         <button class="review-btn" id="review-btn" style="display:none;">
           📝 間違えた問題を復習する（<span id="wrong-count"></span>問）
         </button>
-        <button class="restart-btn" id="restart-btn">もう一度同じ難易度で</button>
-        <button class="back-btn" id="back-btn">難易度選択に戻る</button>
+        <button class="restart-btn" id="restart-btn">もう一度挑戦する</button>
+        <button class="back-btn" id="result-back-btn">カテゴリ選択に戻る</button>
       </div>
     </div>
 
-    <!-- 復習完了画面 -->
+    <!-- ⑤ 復習完了画面 -->
     <div id="review-complete-screen">
       <div class="result-emoji">✅</div>
       <div class="result-title">復習完了！</div>
@@ -321,21 +379,30 @@
         復習した問題の<strong id="review-score-label"></strong>
       </div>
       <div class="result-actions">
-        <button class="restart-btn" id="review-restart-btn">同じ難易度でもう一度</button>
-        <button class="back-btn" id="review-back-btn">難易度選択に戻る</button>
+        <button class="restart-btn" id="review-restart-btn">もう一度挑戦する</button>
+        <button class="back-btn" id="review-back-btn">カテゴリ選択に戻る</button>
       </div>
     </div>
 
   </div>
 
   <script>
+    // ===== 定数 =====
+    const TOPIC_CONFIG = {
+      english:  { name: '英語クイズ',    hasLevels: true },
+      dx:       { name: 'DX研修',        hasLevels: false, file: 'questions_dx.json' },
+      fudosan:  { name: '不動産鑑定士',  hasLevels: false, file: 'questions_fudosan.json' },
+    };
+    const LEVEL_NAMES = { beginner: '初級', intermediate: '中級', advanced: '上級' };
+
     // ===== 状態 =====
-    let allQuestions = [];    // 現在の難易度の全問題
-    let queue = [];           // 出題順インデックス
+    let allQuestions = [];
+    let queue = [];
     let current = 0;
     let score = 0;
-    let wrongIndices = [];    // 間違えた問題の allQuestions インデックス
+    let wrongIndices = [];
     let answered = false;
+    let currentTopic = '';
     let currentLevel = '';
     let isReviewMode = false;
 
@@ -350,41 +417,54 @@
     }
 
     function showScreen(id) {
-      ['start-screen', 'quiz-screen', 'result-screen', 'review-complete-screen'].forEach(s => {
+      ['topic-screen', 'level-screen', 'quiz-screen', 'result-screen', 'review-complete-screen'].forEach(s => {
         document.getElementById(s).style.display = s === id ? 'block' : 'none';
       });
     }
 
-    // ===== 難易度選択 =====
-    document.querySelectorAll('.level-btn').forEach(btn => {
+    // ===== トピック選択 =====
+    document.querySelectorAll('.select-btn[data-topic]').forEach(btn => {
       btn.addEventListener('click', async () => {
-        const level = btn.dataset.level;
-        await startQuiz(level, false);
+        const topic = btn.dataset.topic;
+        if (TOPIC_CONFIG[topic].hasLevels) {
+          showScreen('level-screen');
+          currentTopic = topic;
+        } else {
+          await startQuiz(topic, null, false);
+        }
       });
     });
 
-    async function startQuiz(level, reviewMode) {
+    // ===== 難易度選択（英語のみ） =====
+    document.querySelectorAll('.select-btn[data-level]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        await startQuiz(currentTopic, btn.dataset.level, false);
+      });
+    });
+
+    document.getElementById('level-back-btn').addEventListener('click', () => {
+      showScreen('topic-screen');
+    });
+
+    // ===== クイズ開始 =====
+    async function startQuiz(topic, level, reviewMode) {
       if (!reviewMode) {
-        const res = await fetch(`questions/${level}.json`);
+        const config = TOPIC_CONFIG[topic];
+        const url = config.hasLevels ? `questions/${level}.json` : config.file;
+        const res = await fetch(url);
         allQuestions = await res.json();
+        currentTopic = topic;
         currentLevel = level;
-      }
-
-      isReviewMode = reviewMode;
-      const levelNames = { beginner: '初級', intermediate: '中級', advanced: '上級' };
-
-      if (reviewMode) {
-        queue = shuffle(wrongIndices);
-      } else {
-        queue = shuffle(allQuestions.map((_, i) => i));
         wrongIndices = [];
       }
 
+      isReviewMode = reviewMode;
+      queue = reviewMode ? shuffle(wrongIndices) : shuffle(allQuestions.map((_, i) => i));
       current = 0;
       score = 0;
       answered = false;
 
-      // UI 切り替え
+      // ラベル・カラー設定
       const modeLabel = document.getElementById('mode-label');
       const progressBar = document.getElementById('progress-bar');
       const nextBtn = document.getElementById('next-btn');
@@ -401,7 +481,9 @@
         nextBtn.className = 'next-btn normal';
       }
 
-      document.getElementById('quiz-title').textContent = `${levelNames[level]} ${reviewMode ? '/ 復習' : ''}`;
+      const topicName = TOPIC_CONFIG[currentTopic].name;
+      const levelStr = currentLevel ? ` / ${LEVEL_NAMES[currentLevel]}` : '';
+      document.getElementById('quiz-title').textContent = topicName + levelStr + (reviewMode ? ' / 復習' : '');
 
       showScreen('quiz-screen');
       showQuestion();
@@ -442,8 +524,8 @@
       const isCorrect = choice === q.answer;
       if (isCorrect) {
         score++;
-      } else {
-        if (!isReviewMode) wrongIndices.push(queue[current]);
+      } else if (!isReviewMode) {
+        wrongIndices.push(queue[current]);
       }
 
       document.getElementById('score-display').textContent = score;
@@ -515,21 +597,21 @@
       showScreen('review-complete-screen');
     }
 
-    // ===== ボタンイベント =====
+    // ===== 結果画面ボタン =====
     document.getElementById('review-btn').addEventListener('click', () => {
-      startQuiz(currentLevel, true);
+      startQuiz(currentTopic, currentLevel, true);
     });
     document.getElementById('restart-btn').addEventListener('click', () => {
-      startQuiz(currentLevel, false);
+      startQuiz(currentTopic, currentLevel, false);
     });
-    document.getElementById('back-btn').addEventListener('click', () => {
-      showScreen('start-screen');
+    document.getElementById('result-back-btn').addEventListener('click', () => {
+      showScreen('topic-screen');
     });
     document.getElementById('review-restart-btn').addEventListener('click', () => {
-      startQuiz(currentLevel, false);
+      startQuiz(currentTopic, currentLevel, false);
     });
     document.getElementById('review-back-btn').addEventListener('click', () => {
-      showScreen('start-screen');
+      showScreen('topic-screen');
     });
   </script>
 </body>
