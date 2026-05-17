@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>英語穴埋めクイズ</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f0f4f8;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      width: 100%;
+      max-width: 640px;
+      padding: 36px 32px;
+    }
+
+    /* ヘッダー */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .header h1 {
+      font-size: 1.1rem;
+      color: #555;
+      font-weight: 600;
+    }
+    .score-badge {
+      background: #eef2ff;
+      color: #4f46e5;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 4px 14px;
+      border-radius: 20px;
+    }
+
+    /* プログレスバー */
+    .progress-wrap {
+      background: #e5e7eb;
+      border-radius: 8px;
+      height: 6px;
+      margin-bottom: 28px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background: #4f46e5;
+      border-radius: 8px;
+      transition: width 0.4s ease;
+    }
+
+    /* 問題カウンター */
+    .question-count {
+      font-size: 0.82rem;
+      color: #9ca3af;
+      margin-bottom: 10px;
+    }
+
+    /* 問題文 */
+    .sentence {
+      font-size: 1.35rem;
+      line-height: 1.7;
+      color: #1f2937;
+      margin-bottom: 28px;
+      font-weight: 500;
+      word-break: break-word;
+    }
+    .blank {
+      display: inline-block;
+      border-bottom: 3px solid #4f46e5;
+      min-width: 80px;
+      text-align: center;
+      color: #4f46e5;
+      font-weight: 700;
+      padding: 0 6px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .blank.correct { color: #16a34a; border-color: #16a34a; }
+    .blank.wrong   { color: #dc2626; border-color: #dc2626; }
+
+    /* 選択肢ボタン */
+    .choices {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .choice-btn {
+      padding: 14px 12px;
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      background: #fff;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s, transform 0.1s;
+      font-weight: 500;
+      color: #374151;
+    }
+    .choice-btn:hover:not(:disabled) {
+      border-color: #a5b4fc;
+      background: #eef2ff;
+      transform: translateY(-2px);
+    }
+    .choice-btn:disabled { cursor: default; transform: none; }
+    .choice-btn.correct {
+      border-color: #16a34a;
+      background: #dcfce7;
+      color: #15803d;
+    }
+    .choice-btn.wrong {
+      border-color: #dc2626;
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+    .choice-btn.reveal {
+      border-color: #16a34a;
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    /* フィードバック */
+    .feedback {
+      min-height: 48px;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 0.93rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      display: none;
+    }
+    .feedback.correct { display: block; background: #dcfce7; color: #15803d; }
+    .feedback.wrong   { display: block; background: #fee2e2; color: #b91c1c; }
+
+    /* 次へボタン */
+    .next-btn {
+      width: 100%;
+      padding: 14px;
+      background: #4f46e5;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: none;
+      transition: background 0.2s;
+    }
+    .next-btn:hover { background: #4338ca; }
+
+    /* 結果画面 */
+    #result-screen {
+      display: none;
+      text-align: center;
+    }
+    .result-emoji { font-size: 4rem; margin-bottom: 16px; }
+    .result-title { font-size: 1.6rem; font-weight: 700; color: #1f2937; margin-bottom: 8px; }
+    .result-score { font-size: 3rem; font-weight: 800; color: #4f46e5; margin: 16px 0; }
+    .result-label { font-size: 0.9rem; color: #6b7280; margin-bottom: 32px; }
+    .restart-btn {
+      padding: 14px 40px;
+      background: #4f46e5;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .restart-btn:hover { background: #4338ca; }
+
+    @media (max-width: 480px) {
+      .card { padding: 24px 16px; }
+      .sentence { font-size: 1.15rem; }
+      .choices { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div id="quiz-screen">
+      <div class="header">
+        <h1>英語穴埋めクイズ</h1>
+        <div class="score-badge">スコア: <span id="score-display">0</span></div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <div class="question-count" id="question-count"></div>
+      <div class="sentence" id="sentence"></div>
+      <div class="choices" id="choices"></div>
+      <div class="feedback" id="feedback"></div>
+      <button class="next-btn" id="next-btn">次の問題へ →</button>
+    </div>
+
+    <div id="result-screen">
+      <div class="result-emoji" id="result-emoji"></div>
+      <div class="result-title" id="result-title"></div>
+      <div class="result-score" id="result-score"></div>
+      <div class="result-label" id="result-label"></div>
+      <button class="restart-btn" id="restart-btn">もう一度挑戦する</button>
+    </div>
+  </div>
+
+  <script>
+    let questions = [];
+    let order = [];
+    let current = 0;
+    let score = 0;
+    let answered = false;
+
+    async function loadQuestions() {
+      const res = await fetch('questions.json');
+      questions = await res.json();
+      startQuiz();
+    }
+
+    function shuffle(arr) {
+      const a = arr.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function startQuiz() {
+      order = shuffle(questions.map((_, i) => i));
+      current = 0;
+      score = 0;
+      answered = false;
+      document.getElementById('quiz-screen').style.display = '';
+      document.getElementById('result-screen').style.display = 'none';
+      showQuestion();
+    }
+
+    function showQuestion() {
+      answered = false;
+      const q = questions[order[current]];
+      const total = questions.length;
+
+      document.getElementById('score-display').textContent = score;
+      document.getElementById('question-count').textContent = `問題 ${current + 1} / ${total}`;
+      document.getElementById('progress-bar').style.width = `${(current / total) * 100}%`;
+
+      const blankHtml = `<span class="blank" id="blank">___</span>`;
+      document.getElementById('sentence').innerHTML = q.sentence.replace('___', blankHtml);
+
+      const feedback = document.getElementById('feedback');
+      feedback.className = 'feedback';
+      feedback.textContent = '';
+
+      document.getElementById('next-btn').style.display = 'none';
+
+      const choicesEl = document.getElementById('choices');
+      choicesEl.innerHTML = '';
+      shuffle(q.choices).forEach(choice => {
+        const btn = document.createElement('button');
+        btn.className = 'choice-btn';
+        btn.textContent = choice;
+        btn.addEventListener('click', () => selectAnswer(choice, q));
+        choicesEl.appendChild(btn);
+      });
+    }
+
+    function selectAnswer(choice, q) {
+      if (answered) return;
+      answered = true;
+
+      const isCorrect = choice === q.answer;
+      if (isCorrect) score++;
+
+      document.getElementById('score-display').textContent = score;
+
+      const blank = document.getElementById('blank');
+      blank.textContent = q.answer;
+      blank.classList.add(isCorrect ? 'correct' : 'wrong');
+
+      document.querySelectorAll('.choice-btn').forEach(btn => {
+        btn.disabled = true;
+        if (btn.textContent === q.answer) btn.classList.add(isCorrect ? 'correct' : 'reveal');
+        else if (btn.textContent === choice && !isCorrect) btn.classList.add('wrong');
+      });
+
+      const feedback = document.getElementById('feedback');
+      if (isCorrect) {
+        feedback.className = 'feedback correct';
+        feedback.textContent = `✓ 正解！　${q.explanation}`;
+      } else {
+        feedback.className = 'feedback wrong';
+        feedback.textContent = `✗ 不正解。正解は「${q.answer}」　${q.explanation}`;
+      }
+
+      document.getElementById('next-btn').style.display = 'block';
+    }
+
+    document.getElementById('next-btn').addEventListener('click', () => {
+      current++;
+      if (current >= questions.length) {
+        showResult();
+      } else {
+        showQuestion();
+      }
+    });
+
+    function showResult() {
+      document.getElementById('progress-bar').style.width = '100%';
+      document.getElementById('quiz-screen').style.display = 'none';
+      const result = document.getElementById('result-screen');
+      result.style.display = 'block';
+
+      const total = questions.length;
+      const pct = Math.round((score / total) * 100);
+
+      let emoji, title;
+      if (pct === 100)      { emoji = '🏆'; title = '満点！パーフェクト！'; }
+      else if (pct >= 80)   { emoji = '🎉'; title = '素晴らしい！'; }
+      else if (pct >= 60)   { emoji = '👍'; title = 'よくできました！'; }
+      else if (pct >= 40)   { emoji = '📚'; title = 'もう少し頑張ろう！'; }
+      else                  { emoji = '💪'; title = '復習してみよう！'; }
+
+      document.getElementById('result-emoji').textContent = emoji;
+      document.getElementById('result-title').textContent = title;
+      document.getElementById('result-score').textContent = `${score} / ${total}`;
+      document.getElementById('result-label').textContent = `正答率 ${pct}%`;
+    }
+
+    document.getElementById('restart-btn').addEventListener('click', startQuiz);
+
+    loadQuestions();
+  </script>
+</body>
+</html>

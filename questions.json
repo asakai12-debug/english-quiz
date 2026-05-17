@@ -1,0 +1,122 @@
+[
+  {
+    "sentence": "She has been living in Tokyo ___ 2018.",
+    "answer": "since",
+    "choices": ["since", "for", "from", "during"],
+    "explanation": "「2018年から（ずっと）」は起点を示す since。for は期間（3 years など）に使う。"
+  },
+  {
+    "sentence": "If I ___ you, I would apologize immediately.",
+    "answer": "were",
+    "choices": ["were", "am", "was", "be"],
+    "explanation": "仮定法過去では主語に関わらず were を使う（I were）。"
+  },
+  {
+    "sentence": "The report must be ___ by Friday.",
+    "answer": "submitted",
+    "choices": ["submitted", "submit", "submitting", "to submit"],
+    "explanation": "must be + 過去分詞 で受動態の義務表現。"
+  },
+  {
+    "sentence": "He ___ to finish the project before the deadline.",
+    "answer": "managed",
+    "choices": ["managed", "succeeded", "could", "achieved"],
+    "explanation": "「〜することができた（なんとか）」は managed to do。succeeded は in doing、achieved は目的語が名詞。"
+  },
+  {
+    "sentence": "I'm not used to ___ up so early.",
+    "answer": "getting",
+    "choices": ["getting", "get", "got", "have gotten"],
+    "explanation": "be used to の後は動名詞（-ing）。used to + 原形 とは区別する。"
+  },
+  {
+    "sentence": "The news was so shocking that she was left ___ for words.",
+    "answer": "speechless",
+    "choices": ["speechless", "wordless", "silent", "quiet"],
+    "explanation": "left speechless は「言葉を失った」という慣用表現。"
+  },
+  {
+    "sentence": "By the time she arrived, the meeting had already ___.",
+    "answer": "ended",
+    "choices": ["ended", "end", "ending", "been ending"],
+    "explanation": "by the time 節には過去完了（had + 過去分詞）を使い完了を示す。"
+  },
+  {
+    "sentence": "He ___ rather stay home than go to the party.",
+    "answer": "would",
+    "choices": ["would", "will", "should", "could"],
+    "explanation": "would rather + 動詞の原形 で「〜する方がいい」。"
+  },
+  {
+    "sentence": "The scientist's findings have ___ our understanding of the universe.",
+    "answer": "transformed",
+    "choices": ["transformed", "transferred", "transmitted", "translated"],
+    "explanation": "transform は「根本的に変える・変革する」。transfer は移動、transmit は送信、translate は翻訳。"
+  },
+  {
+    "sentence": "Despite ___ hard, he failed the exam.",
+    "answer": "studying",
+    "choices": ["studying", "having studied", "study", "studied"],
+    "explanation": "despite の後は名詞または動名詞。having studied（完了形）も文法的だが、ここでは studying が自然。"
+  },
+  {
+    "sentence": "She ___ no sooner left the office than it started raining.",
+    "answer": "had",
+    "choices": ["had", "has", "was", "did"],
+    "explanation": "no sooner ... than 構文は過去完了（had）＋ than 節（過去形）。"
+  },
+  {
+    "sentence": "The proposal was ___ down by the committee.",
+    "answer": "turned",
+    "choices": ["turned", "put", "shot", "brought"],
+    "explanation": "turn down は「却下する」。put down は書き留める、shot down は撃墜・論破、bring down は倒す。"
+  },
+  {
+    "sentence": "It is ___ that he will be promoted next year.",
+    "answer": "likely",
+    "choices": ["likely", "probable", "possible", "certain"],
+    "explanation": "It is likely that ... は「〜する可能性が高い」。probable も近いが、likely の方が口語的でよく使われる。"
+  },
+  {
+    "sentence": "The two countries signed a ___ to prevent future conflicts.",
+    "answer": "treaty",
+    "choices": ["treaty", "contract", "agreement", "deal"],
+    "explanation": "国家間の正式な条約は treaty。contract は私法上の契約、agreement や deal はより広い意味。"
+  },
+  {
+    "sentence": "You should ___ into account the potential risks before deciding.",
+    "answer": "take",
+    "choices": ["take", "put", "bring", "keep"],
+    "explanation": "take into account は「〜を考慮に入れる」という慣用句。"
+  },
+  {
+    "sentence": "The project was ___ due to lack of funding.",
+    "answer": "abandoned",
+    "choices": ["abandoned", "cancelled", "postponed", "suspended"],
+    "explanation": "abandoned は完全に放棄。cancelled は予定の取り消し、postponed は延期、suspended は一時停止。"
+  },
+  {
+    "sentence": "She gave a ___ speech that moved the entire audience to tears.",
+    "answer": "compelling",
+    "choices": ["compelling", "compulsory", "comprehensive", "competitive"],
+    "explanation": "compelling は「心を強く動かす・説得力のある」。compulsory は義務的、comprehensive は包括的、competitive は競争的。"
+  },
+  {
+    "sentence": "He tends to ___ important decisions until the last minute.",
+    "answer": "postpone",
+    "choices": ["postpone", "propose", "oppose", "expose"],
+    "explanation": "postpone は「先延ばしにする」。procrastinate も同義だが、ここでは postpone が適切。"
+  },
+  {
+    "sentence": "The new policy will ___ effect from January 1st.",
+    "answer": "take",
+    "choices": ["take", "come", "put", "bring"],
+    "explanation": "take effect は「発効する・効力を持つ」という慣用句。come into effect も同義だが take effect の方が簡潔。"
+  },
+  {
+    "sentence": "She is ___ of making the same mistake twice.",
+    "answer": "incapable",
+    "choices": ["incapable", "incapacitated", "incompetent", "inconsistent"],
+    "explanation": "incapable of -ing は「〜することができない」。incompetent は能力不足全般を指し、of -ing とは使わない。"
+  }
+]
