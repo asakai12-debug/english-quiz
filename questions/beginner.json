@@ -60,10 +60,10 @@
     "explanation": "「今まで読んだ中で最も〜」は最上級 the most + 形容詞。"
   },
   {
-    "sentence": "She ___ her homework before watching TV.",
+    "sentence": "She ___ her homework yesterday before watching TV.",
     "answer": "finished",
     "choices": ["finished", "finishes", "has finished", "was finishing"],
-    "explanation": "過去の出来事の順序を述べる単純な文なので過去形 finished。"
+    "explanation": "yesterday（昨日）があるので過去形 finished。has finished（現在完了）は yesterday など特定の過去時点と一緒に使えない。"
   },
   {
     "sentence": "I ___ like coffee, but now I love it.",

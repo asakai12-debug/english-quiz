@@ -54,10 +54,10 @@
     "explanation": "transform は「根本的に変える・変革する」。transfer は移動、transmit は送信、translate は翻訳。"
   },
   {
-    "sentence": "Despite ___ hard, he failed the exam.",
-    "answer": "studying",
-    "choices": ["studying", "having studied", "study", "studied"],
-    "explanation": "despite の後は名詞または動名詞。having studied（完了形）も文法的だが、ここでは studying が自然。"
+    "sentence": "I wish I ___ harder when I was in school.",
+    "answer": "had studied",
+    "choices": ["had studied", "studied", "would study", "have studied"],
+    "explanation": "I wish + 仮定法過去完了（had + 過去分詞）で過去への後悔を表す。when I was in school が過去の話であることを示しているため、過去完了が必要。"
   },
   {
     "sentence": "She ___ no sooner left the office than it started raining.",
