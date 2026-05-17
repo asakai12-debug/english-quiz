@@ -344,7 +344,10 @@
           <span class="quiz-mode-label normal" id="mode-label">通常モード</span>
           <span class="quiz-title" id="quiz-title"></span>
         </div>
-        <div class="score-badge">スコア: <span id="score-display">0</span></div>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <button class="score-badge" id="quiz-menu-btn" style="background:none; border:none; color:#9ca3af; font-size:0.82rem; cursor:pointer; padding:0; font-weight:500; white-space:nowrap;">← メニュー</button>
+          <div class="score-badge">スコア: <span id="score-display">0</span></div>
+        </div>
       </div>
       <div class="progress-wrap">
         <div class="progress-bar normal" id="progress-bar"></div>
@@ -444,6 +447,12 @@
 
     document.getElementById('level-back-btn').addEventListener('click', () => {
       showScreen('topic-screen');
+    });
+
+    document.getElementById('quiz-menu-btn').addEventListener('click', () => {
+      if (confirm('メニューに戻りますか？現在の進捗はリセットされます。')) {
+        showScreen('topic-screen');
+      }
     });
 
     // ===== クイズ開始 =====
