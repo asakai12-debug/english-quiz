@@ -36,10 +36,10 @@
     "explanation": "「〜した方がいい」というアドバイスは should。"
   },
   {
-    "sentence": "There ___ a lot of people at the concert.",
+    "sentence": "There ___ three messages waiting for you when you got home last night.",
     "answer": "were",
     "choices": ["were", "was", "are", "is"],
-    "explanation": "people は複数形なので be 動詞も複数形 were（過去）。"
+    "explanation": "three messages（複数）なので were。last night が過去を示し、are / is（現在形）は使えない。"
   },
   {
     "sentence": "I haven't seen her ___ last Monday.",
