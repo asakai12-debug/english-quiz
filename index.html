@@ -306,10 +306,10 @@
       </div>
     </div>
 
-    <!-- ② 難易度選択（英語のみ） -->
+    <!-- ② 難易度選択 -->
     <div id="level-screen" class="select-screen" style="display:none;">
       <button class="back-link" id="level-back-btn">← カテゴリ選択に戻る</button>
-      <div class="app-title">英語クイズ</div>
+      <div class="app-title" id="level-screen-title">英語クイズ</div>
       <div class="app-subtitle">難易度を選んでスタート</div>
       <div class="select-label">難易度を選択</div>
       <div class="select-buttons">
@@ -392,9 +392,17 @@
   <script>
     // ===== 定数 =====
     const TOPIC_CONFIG = {
-      english:  { name: '英語クイズ',    hasLevels: true },
-      dx:       { name: 'DX研修',        hasLevels: false, file: 'questions_dx.json' },
-      fudosan:  { name: '不動産鑑定士',  hasLevels: false, file: 'questions_fudosan.json' },
+      english:  { name: '英語クイズ', hasLevels: true, levelDescs: {
+        beginner:     '基本文法・日常表現（中学〜高校レベル）',
+        intermediate: '時制・語彙・慣用句（TOEIC 600点台）',
+        advanced:     '高度な文法・難語彙（英検準1級・TOEIC 800点以上）',
+      }},
+      dx:       { name: 'DX研修', hasLevels: true, filterByLevel: true, file: 'questions_dx.json', levelDescs: {
+        beginner:     'DXの基礎・データ・クラウドの基本知識',
+        intermediate: 'AI・セキュリティ・開発手法・組織変革',
+        advanced:     'プラットフォーム戦略・MLOps・データメッシュ',
+      }},
+      fudosan:  { name: '不動産鑑定士', hasLevels: false, file: 'questions_fudosan.json' },
     };
     const LEVEL_NAMES = { beginner: '初級', intermediate: '中級', advanced: '上級' };
 
@@ -432,6 +440,13 @@
         if (TOPIC_CONFIG[topic].hasLevels) {
           showScreen('level-screen');
           currentTopic = topic;
+          const cfg = TOPIC_CONFIG[topic];
+          document.getElementById('level-screen-title').textContent = cfg.name;
+          if (cfg.levelDescs) {
+            document.querySelector('[data-level="beginner"] .btn-desc').textContent = cfg.levelDescs.beginner;
+            document.querySelector('[data-level="intermediate"] .btn-desc').textContent = cfg.levelDescs.intermediate;
+            document.querySelector('[data-level="advanced"] .btn-desc').textContent = cfg.levelDescs.advanced;
+          }
         } else {
           await startQuiz(topic, null, false);
         }
@@ -459,9 +474,13 @@
     async function startQuiz(topic, level, reviewMode) {
       if (!reviewMode) {
         const config = TOPIC_CONFIG[topic];
-        const url = config.hasLevels ? `questions/${level}.json` : config.file;
+        const url = (config.hasLevels && !config.filterByLevel) ? `questions/${level}.json` : config.file;
         const res = await fetch(url);
         allQuestions = await res.json();
+        if (config.filterByLevel && level) {
+          const levelName = LEVEL_NAMES[level];
+          allQuestions = allQuestions.filter(q => q.level === levelName);
+        }
         currentTopic = topic;
         currentLevel = level;
         wrongIndices = [];
